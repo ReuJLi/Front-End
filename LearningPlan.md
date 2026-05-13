@@ -15,12 +15,14 @@ Resources:
     react.dev official tutorial 
     Traversy Media
     Frontend Mentor 
+    
 Milestones:
     Dev server is live, hot reload works.
     IncidentCard displays props correctly. 
     Login form fields are controlled via useState.
     IncidentList renders 5 mock reports with correct keys.
     Can explain why useState triggers a re-render. 
+    
     
 Week 2 (May 19-24) : State, Effects & Forms
 Goal: Fetch real data, add multi-page routing, and build the full incident submission form. 
@@ -36,12 +38,14 @@ Resources:
     Web Dev Simplified
     React.dev
     react Hook Form
+    
 Milestones: 
     App has 4+ working routes with no crashes.
     incident list loads from a live API call with a loading spinner. 
     New Incident form validates and submits with visible success/error feedback.
     Single incident detail page works via URL params.
     Can explain the difference between [], [value], and no dependency array in useEffect. 
+    
     
 Week 3 (May 26-31) : Authentication & Protected Routes
 Goal: Wire up regal login API, manage auth state globally, protect routes, and attach JWT tokens to every request. 
@@ -58,12 +62,14 @@ Resources:
     axios-http.com
     jwt.io debugger
     Build a useAuth custom hook
+    
 Milestones:
     Staff can log in end-to-end (credentials -> token -> dashboard).
     Navigating to a protected route without a token redirects to login.
     Every API request includes the Authorization header automatically.
     Session persists on page refresh. 
     useAuth() custom hook is implemented and used across components. 
+    
     
 Week 4 (Jun 2-7) : Polish, Deploy & Career Skills 
 Goal: Go from "it works" to "it's production-ready." Deploy app and learn what makes React developers hireable. 
@@ -80,6 +86,7 @@ Reosurces:
     Vercel
     react-hot-toast or Sonner
     Epic React by Kent C.Dodds
+    
 Milestones: 
     App is deployed at a public URL and works on a mobile phone. 
     Every async action show slaoding and error feedback.

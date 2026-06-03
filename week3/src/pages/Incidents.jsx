@@ -6,6 +6,10 @@ function Incidents({ incidents }) {
         <div key={index}>
           <p>{incident.incidentType}</p>
           <p>{incident.studentName}</p>
+          <p>{incident.eventName}</p>
+          <p>{incident.filedBy}</p>
+          <p>{incident.date}</p>
+          <p>{incident.description}</p>
         </div>
       ))}
     </div>

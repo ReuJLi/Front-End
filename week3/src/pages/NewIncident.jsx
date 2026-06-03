@@ -22,7 +22,8 @@ function NewIncident({addIncident}) {
     addIncident(newIncident)
   }
 
-  return <form action=""> 
+  return (
+  <form action=""> 
   <label>Incident Type </label>
   <input value={incidentType} onChange={e => setIncidentType(e.target.value)}/>
   <label>Student Name</label>
@@ -37,6 +38,7 @@ function NewIncident({addIncident}) {
   <input value={description} onChange={e => setDescription(e.target.value)}/>
   <button onClick={handleSubmit}>Submit Report</button>
   </form>
+  )
 }
 
 export default NewIncident

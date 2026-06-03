@@ -6,6 +6,10 @@ import NewIncident from "./pages/NewIncident"
 function App() {
 const [incidents, setIncidents] = useState([])
 
+function addIncident(incident) {
+  setIncidents([...incidents, incident])
+}
+
   return (
     <BrowserRouter> 
         <nav> 
@@ -13,8 +17,8 @@ const [incidents, setIncidents] = useState([])
           <NavLink to="/new">New Incident</NavLink>
         </nav>
       <Routes>
-        <Route path="/" element={<Incidents />} />
-        <Route path="/new" element={<NewIncident />} />
+        <Route path="/" element={<Incidents incidents={incidents}/>} />
+        <Route path="/new" element={<NewIncident addIncident={addIncident}/>} />
       </Routes>
     </BrowserRouter>
   )

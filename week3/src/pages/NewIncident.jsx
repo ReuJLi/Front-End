@@ -1,11 +1,14 @@
 import { useState } from "react"
-function NewIncident() {
+
+function NewIncident({addIncident}) {
+
   const [incidentType, setIncidentType] = useState("")
   const [studentName, setStudentName] = useState("")
   const [eventName, setEventName] = useState("")
   const [filedBy, setFiledBy] = useState("")
   const [date, setDate] = useState("")
   const [description, setDescription] = useState("")
+
   function handleSubmit(e) {
     e.preventDefault()
     const newIncident = {
@@ -16,9 +19,9 @@ function NewIncident() {
       date,
       description
     }
-    // Here you would typically send newIncident to your backend or update state in a parent component
-    console.log(newIncident)
+    addIncident(newIncident)
   }
+
   return <form action=""> 
   <label>Incident Type </label>
   <input value={incidentType} onChange={e => setIncidentType(e.target.value)}/>
@@ -35,4 +38,5 @@ function NewIncident() {
   <button onClick={handleSubmit}>Submit Report</button>
   </form>
 }
+
 export default NewIncident

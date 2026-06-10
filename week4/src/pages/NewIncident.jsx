@@ -1,13 +1,22 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react" 
 
 function NewIncident({addIncident}) {
 
+   const navigate = useNavigate() 
   const [incidentType, setIncidentType] = useState("")
   const [studentName, setStudentName] = useState("")
   const [eventName, setEventName] = useState("")
   const [filedBy, setFiledBy] = useState("")
   const [date, setDate] = useState("")
   const [description, setDescription] = useState("")
+
+  useEffect(() => {
+  if (!localStorage.getItem("token")) {
+        navigate("/login")
+  }
+} , [navigate]) 
 
   function handleSubmit(e) {
     e.preventDefault()

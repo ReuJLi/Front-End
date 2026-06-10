@@ -1,4 +1,14 @@
+
+import { useNavigate } from "react-router-dom"
+
 function Incidents({ incidents }) {
+    const navigate = useNavigate() 
+
+    if (!localStorage.getItem("token")) {
+        navigate("/login")
+        return null 
+    }
+    
   return (
     <div>
       <h2>Incidents Page</h2>

@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function Login() {
+  const navigate = useNavigate()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -8,6 +10,7 @@ function Login() {
   e.preventDefault()
   if (email === "janedoe@byuh.edu" && password === "password123") {
     localStorage.setItem("token", "fake-token-123")
+    navigate("/")
     alert("Logged in!")
   } else {
     alert("Wrong credentials!")

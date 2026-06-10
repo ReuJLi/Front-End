@@ -1,8 +1,8 @@
-import Practice from "./Practice.jsx"
 import { useState } from "react"
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom" 
 import Incidents from "./pages/Incidents"
 import NewIncident from "./pages/NewIncident"
+import Login from "./pages/Login.jsx" 
 
 function App() {
 const [incidents, setIncidents] = useState([])
@@ -16,12 +16,12 @@ function addIncident(incident) {
         <nav> 
           <NavLink to="/">Incidents</NavLink>
           <NavLink to="/new">New Incident</NavLink>
+          <NavLink to="/login">Login</NavLink>
         </nav>
-        <Practice>
-        </Practice>
       <Routes>
         <Route path="/" element={<Incidents incidents={incidents}/>} />
         <Route path="/new" element={<NewIncident addIncident={addIncident}/>} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   )

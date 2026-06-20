@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom" 
 import { useEffect, useState } from "react"
 
 function Incidents() {
@@ -32,13 +33,15 @@ function Incidents() {
     <div>
       <h2>Incidents Page</h2>
       {incidents.map((incident, index) => (
-        <div key={index}>
-          <p>{incident.incident_type}</p>
-          <p>{incident.description}</p>
-          <p>{incident.action_taken}</p>
-          <p>{incident.status}</p>
-        </div>
-      ))}
+  <Link to={`/incidents/${incident._id}`} key={index}>
+    <div>
+      <p>{incident.incident_type}</p>
+      <p>{incident.description}</p>
+      <p>{incident.action_taken}</p>
+      <p>{incident.status}</p>
+    </div>
+  </Link>
+    ))}
     </div>
   )
 }

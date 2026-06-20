@@ -4,6 +4,7 @@ import Incidents from "./pages/Incidents"
 import NewIncident from "./pages/NewIncident"
 import Login from "./pages/Login" 
 import SignUp from "./pages/SignUp" 
+import IncidentDetail from "./pages/IncidentDetail"
 
 function App() {
 const [incidents, setIncidents] = useState([])
@@ -25,6 +26,7 @@ function addIncident(incident) {
         <Route path="/new" element={<NewIncident addIncident={addIncident}/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/incidents/:id" element={<IncidentDetail />} />
       </Routes>
     </BrowserRouter>
   )

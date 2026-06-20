@@ -7,24 +7,37 @@ import SignUp from "./pages/SignUp"
 import IncidentDetail from "./pages/IncidentDetail"
 
 function App() {
-const [incidents, setIncidents] = useState([])
 
-function addIncident(incident) {
-  setIncidents([...incidents, incident])
-}
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"))
+
+  function handleLogout() {
+    localStorage.removeItem("token")
+    setIsLoggedIn(false)
+    alert("Logged out!")
+  }
+
 
   return (
     <BrowserRouter> 
         <nav> 
+          {isLoggedIn && (
+            <>
           <NavLink to="/">Incidents</NavLink>
           <NavLink to="/new">New Incident</NavLink>
-          <NavLink to="/login">Login</NavLink>
+          <button onClick={handleLogout}>Logout</button>
+          </> 
+          )}
+          {!isLoggedIn && (
+            <>
+           <NavLink to="/login">Login</NavLink>
           <NavLink to="/signup">Sign Up</NavLink>
+          </>
+          )}
         </nav>
       <Routes>
-        <Route path="/" element={<Incidents incidents={incidents}/>} />
-        <Route path="/new" element={<NewIncident addIncident={addIncident}/>} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Incidents/>} />
+        <Route path="/new" element={<NewIncident/>} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/incidents/:id" element={<IncidentDetail />} />
       </Routes>

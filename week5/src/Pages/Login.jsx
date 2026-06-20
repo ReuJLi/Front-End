@@ -6,17 +6,26 @@ function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  function handleSubmit(e) {
+  function handleSubmit(e) { 
+  console.log("BUTTON CLICKED")   
   e.preventDefault()
-  if (email === "janedoe@byuh.edu" && password === "password123") {
-    localStorage.setItem("token", "fake-token-123")
-    navigate("/")
-    alert("Logged in!")
-  } else {
-    alert("Wrong credentials!")
-  }
+  console.log("Sending:", email, password)
+  fetch("http://localhost:3000/api/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({email, password})
+  })
+    .then(res => res.json().then(data => ({ ok: res.ok, data })))
+    .then(({ ok, data }) => {
+      if (ok) {
+        localStorage.setItem("token", data.token)
+        navigate("/")
+        alert("Logged in!")
+      } else {
+        alert("Login failed: " + data.error)
+      }
+    })
 }
-
   return (
     <div>
       <h2>Login</h2>

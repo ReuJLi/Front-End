@@ -376,3 +376,25 @@ nav button:hover {
   text-align: center;
   padding: 24px 0;
 }
+
+/* ── Auth Link ── */
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #666;
+}
+
+.auth-link a {
+  color: #e05c2a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+.auth-card .field-group input {
+  margin-bottom: 0;
+}

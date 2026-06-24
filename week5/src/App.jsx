@@ -5,6 +5,7 @@ import NewIncident from "./pages/NewIncident"
 import Login from "./pages/Login" 
 import SignUp from "./pages/SignUp" 
 import IncidentDetail from "./pages/IncidentDetail"
+import EditIncident from "./pages/EditIncident"
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/incidents/:id" element={<IncidentDetail />} />
+        <Route path="/incidents/:id/edit" element={<EditIncident />} />
       </Routes>
     </BrowserRouter>
   )

@@ -7,6 +7,7 @@ function SignUp() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [supervisorCode, setSupervisorCode] = useState("")
   const [error, setError] = useState("")
 
   function handleSubmit(e) {
@@ -15,7 +16,7 @@ function SignUp() {
     fetch("http://localhost:3000/api/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password, role: "user" })
+      body: JSON.stringify({ name, email, password, supervisorCode })
     })
       .then(res => res.json().then(data => ({ ok: res.ok, data })))
       .then(({ ok, data }) => {
@@ -64,6 +65,15 @@ function SignUp() {
               onChange={e => setPassword(e.target.value)}
               placeholder="Choose a password"
               required
+            />
+          </div>
+          <div className="field-group">
+            <label>Supervisor Code <span className="optional-label">(optional)</span></label>
+            <input
+              type="password"
+              value={supervisorCode}
+              onChange={e => setSupervisorCode(e.target.value)}
+              placeholder="Enter code if you are a supervisor"
             />
           </div>
           <button type="submit" className="btn-primary">Sign Up</button>

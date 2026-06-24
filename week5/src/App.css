@@ -320,3 +320,59 @@ nav button:hover {
   color: #999;
   font-size: 14px;
 }
+
+/* ── Page Header Row ── */
+.page-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.btn-primary-small {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  background: #e05c2a;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-primary-small:hover {
+  background: #c44e22;
+}
+
+/* ── Page Header Row ── */
+.page-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.btn-primary-small {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  background: #e05c2a;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-primary-small:hover {
+  background: #c44e22;
+}
+
+.empty-message {
+  color: #999;
+  text-align: center;
+  padding: 24px 0;
+}

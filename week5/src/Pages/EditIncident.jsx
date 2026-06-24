@@ -169,6 +169,14 @@ function EditIncident() {
           </div>
 
           <div className="field-group">
+            <label>Status</label>
+            <select name="status" value={formData.status} onChange={handleChange}>
+              <option value="open">Open</option>
+              <option value="resolved">Resolved</option>
+            </select>
+          </div>
+
+          <div className="field-group">
             <label>Student Name</label>
             <input
               name="student_name"

@@ -4,13 +4,14 @@ import "../App.css"
 
 function NewIncident() {
   const navigate = useNavigate()
-  const [events, setEvents] = useState([])
   const [formData, setFormData] = useState({
+    worker_initials: "",
+    event_name: "",
     incident_type: "",
     description: "",
     action_taken: "",
     status: "open",
-    event_id: "",
+    student_name: "",
     student_id: "",
   })
   const [error, setError] = useState("")
@@ -19,21 +20,14 @@ function NewIncident() {
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login")
-      return
     }
-    fetch("http://localhost:3000/api/events", {
-      headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
-    })
-      .then(res => res.json())
-      .then(data => setEvents(data))
-      .catch(() => setError("Could not load events."))
   }, [navigate])
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  function handleSubmit(e) {
+ function handleSubmit(e) {
     e.preventDefault()
     setError("")
     setLoading(true)
@@ -44,7 +38,12 @@ function NewIncident() {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${localStorage.getItem("token")}`
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify({
+        ...formData,
+        incident_type: formData.incident_type === "Other"
+          ? formData.incident_type_other
+          : formData.incident_type
+      })
     })
       .then(res => res.json().then(data => ({ ok: res.ok, data })))
       .then(({ ok, data }) => {
@@ -60,7 +59,6 @@ function NewIncident() {
         setError("Network error. Please try again.")
       })
   }
-
   return (
     <div className="page">
       <div className="card">
@@ -73,16 +71,57 @@ function NewIncident() {
 
         <form onSubmit={handleSubmit}>
           <div className="field-group">
-            <label>Incident Type</label>
+            <label>Worker Initials</label>
             <input
-              name="incident_type"
-              value={formData.incident_type}
+              name="worker_initials"
+              value={formData.worker_initials}
               onChange={handleChange}
-              placeholder="e.g. Unauthorized Entry"
+              placeholder="e.g. R.J.L"
               required
             />
           </div>
 
+          <div className="field-group">
+            <label>Event Name</label>
+            <input
+              name="event_name"
+              value={formData.event_name}
+              onChange={handleChange}
+              placeholder="e.g. Campus Sports Day"
+              required
+            />
+          </div>
+
+         <div className="field-group">
+            <label>Incident Type</label>
+            <select
+              name="incident_type"
+              value={formData.incident_type}
+              onChange={handleChange}
+              required
+            >
+              <option value="">-- Select Incident Type --</option>
+              <option value="Dress and Grooming">Dress and Grooming</option>
+              <option value="Injury">Injury</option>
+              <option value="Unauthorized Entry">Unauthorized Entry</option>
+              <option value="Physical Altercation">Physical Altercation</option>
+              <option value="Property Damage">Property Damage</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          {formData.incident_type === "Other" && (
+            <div className="field-group">
+              <label>Please specify</label>
+              <input
+                name="incident_type_other"
+                value={formData.incident_type_other || ""}
+                onChange={handleChange}
+                placeholder="Describe the incident type..."
+                required
+              />
+            </div>
+          )}
           <div className="field-group">
             <label>Description</label>
             <textarea
@@ -106,23 +145,14 @@ function NewIncident() {
           </div>
 
           <div className="field-group">
-            <label>Status</label>
-            <select name="status" value={formData.status} onChange={handleChange}>
-              <option value="open">Open</option>
-              <option value="resolved">Resolved</option>
-            </select>
-          </div>
-
-          <div className="field-group">
-            <label>Event</label>
-            <select name="event_id" value={formData.event_id} onChange={handleChange} required>
-              <option value="">-- Select an Event --</option>
-              {events.map(event => (
-                <option key={event._id} value={event._id}>
-                  {event.event_name}
-                </option>
-              ))}
-            </select>
+            <label>Student Name</label>
+            <input
+              name="student_name"
+              value={formData.student_name}
+              onChange={handleChange}
+              placeholder="e.g. John Smith"
+              required
+            />
           </div>
 
           <div className="field-group">
@@ -131,7 +161,7 @@ function NewIncident() {
               name="student_id"
               value={formData.student_id}
               onChange={handleChange}
-              placeholder="Enter student MongoDB ID"
+              placeholder="e.g. 12345678"
               required
             />
           </div>

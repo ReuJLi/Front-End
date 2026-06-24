@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom"
-import { Link } from "react-router-dom" 
+import { useNavigate, Link } from "react-router-dom"
 import { useEffect, useState } from "react"
+import "../App.css"
 
 function Incidents() {
   const navigate = useNavigate()
@@ -28,20 +28,32 @@ function Incidents() {
       })
   }, [navigate])
 
-  if (loading) return <p>Loading incidents...</p>
+  if (loading) return <p className="loading">Loading incidents...</p>
+
   return (
-    <div>
-      <h2>Incidents Page</h2>
-      {incidents.map((incident, index) => (
-  <Link to={`/incidents/${incident._id}`} key={index}>
-    <div>
-      <p>{incident.incident_type}</p>
-      <p>{incident.description}</p>
-      <p>{incident.action_taken}</p>
-      <p>{incident.status}</p>
-    </div>
-  </Link>
-    ))}
+    <div className="page">
+      <p className="page-eyebrow">All Incidents</p>
+      <h2 className="page-title">Incidents</h2>
+
+      {incidents.length === 0 ? (
+        <div className="card">
+          <p className="empty-message">No incidents yet. File one!</p>
+        </div>
+      ) : (
+        <div className="incident-list">
+          {incidents.map(incident => (
+            <Link to={`/incidents/${incident._id}`} key={incident._id} className="incident-card">
+              <h3>{incident.incident_type}</h3>
+              <p>Event: {incident.event_name}</p>
+              <p>Student: {incident.student_name}</p>
+              <p>Filed by: {incident.worker_initials}</p>
+              <span className={`badge ${incident.status === "open" ? "badge-open" : "badge-resolved"}`}>
+                {incident.status}
+              </span>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

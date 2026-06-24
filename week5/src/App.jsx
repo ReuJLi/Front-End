@@ -11,10 +11,10 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"))
 
-  function handleLogout() {
+ function handleLogout() {
     localStorage.removeItem("token")
     setIsLoggedIn(false)
-    alert("Logged out!")
+    window.location.href = "/login"
   }
 
 

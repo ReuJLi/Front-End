@@ -49,6 +49,16 @@ function IncidentDetail() {
         <div className="divider" />
 
         <div className="field-group">
+          <label>Worker Initials</label>
+          <p>{incident.worker_initials}</p>
+        </div>
+
+        <div className="field-group">
+          <label>Event Name</label>
+          <p>{incident.event_name}</p>
+        </div>
+
+        <div className="field-group">
           <label>Description</label>
           <p>{incident.description}</p>
         </div>
@@ -63,6 +73,16 @@ function IncidentDetail() {
           <span className={`badge ${incident.status === "open" ? "badge-open" : "badge-resolved"}`}>
             {incident.status}
           </span>
+        </div>
+
+        <div className="field-group">
+          <label>Student Name</label>
+          <p>{incident.student_name}</p>
+        </div>
+
+        <div className="field-group">
+          <label>Student ID</label>
+          <p>{incident.student_id}</p>
         </div>
 
         <div className="btn-row">
